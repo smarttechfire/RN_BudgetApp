@@ -38,10 +38,24 @@ export default function App() {
   )
   return (
     <NavigationContainer>
-      <Suspense>
+      <Suspense
+        fallback={
+          <View style={{ flex: 1 }}>
+            <ActivityIndicator size={"large"} />
+            <Text>Loading Database...</Text>
+          </View>
+        }
+      >
         <SQLiteProvider databaseName="mySQLiteDB.db" useSuspense>
           <Stack.Navigator>
-            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen 
+              name="Home" 
+              component={Home}
+              options={{
+                headerTitle:"Budget Buddy",
+                headerLargeTitle: true,
+              }}
+              />
           </Stack.Navigator>
         </SQLiteProvider>
       </Suspense>
